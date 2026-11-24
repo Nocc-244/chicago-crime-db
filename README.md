@@ -55,6 +55,42 @@ Dữ liệu phẳng từ các tệp CSV được chuẩn hóa và tách thành 3
 ---
 
 ## 4. Hướng dẫn chạy chương trình
-1. Cài đặt thư viện cần thiết:
-   ```bash
-   pip install pandas
+
+### Bước 1: Clone mã nguồn và khởi tạo môi trường ảo (khuyên dùng)
+Mở Terminal tại thư mục dự án và chạy các lệnh sau để tạo môi trường độc lập, tránh xung đột thư viện:
+
+        git clone https://github.com/Nocc-244/chicago-crime-db.git
+        cd chicago-crime-db
+        python -m venv .venv
+        .venv\Scripts\activate
+
+### Bước 2: Cài đặt thư viện bên thứ ba
+Cài đặt `pandas` (lệnh này sẽ tự động cài đặt kèm thư viện tính toán nền `numpy`; các thư viện còn lại như `sqlite3`, `glob`, `os`, `time` đã có sẵn trong Python):
+
+        pip install pandas
+
+### Bước 3: Chuẩn bị thư mục dữ liệu đầu vào
+Vì các tệp dữ liệu gốc có dung lượng lớn (~1 GB) nên không được đính kèm trực tiếp trên GitHub. Để chạy thử nghiệm:
+1. Tạo một thư mục mới đặt tên chính xác là `data` ngay tại thư mục gốc của dự án (`chicago-crime-db/data/`).
+2. Truy cập [Crimes in Chicago trên Kaggle](https://www.kaggle.com/datasets/currie32/crimes-in-chicago/data?select=Chicago_Crimes_2008_to_2011.csv), tải về và giải nén 2 tệp CSV sau vào bên trong thư mục `data/`:
+   - `Chicago_Crimes_2005_to_2007.csv`
+   - `Chicago_Crimes_2008_to_2011.csv`
+
+Cấu trúc thư mục sau khi chuẩn bị xong sẽ như sau:
+
+        chicago-crime-db/
+        ├── data/
+        │   ├── Chicago_Crimes_2005_to_2007.csv
+        │   └── Chicago_Crimes_2008_to_2011.csv
+        ├── method1_standard.py
+        ├── method2_optimized.py
+        ├── .gitignore
+        └── README.md
+
+### Bước 4: Thực thi và kiểm tra kết quả
+Chạy lần lượt hai kịch bản bằng Python:
+
+        python method1_standard.py
+        python method2_optimized.py
+
+Sau khi chạy hoàn tất, hệ thống sẽ tự động sinh ra 2 tệp cơ sở dữ liệu
